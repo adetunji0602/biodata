@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h2>Admin Panel</h2>
+<table border="1">
+<tr><th>ID</th><th>Name</th><th>Age</th><th>Sex</th><th>Occupation</th><th>Photo</th></tr>
+{% for user in users %}
+<tr>
+<td>{{user[0]}}</td>
+<td>{{user[1]}}</td>
+<td>{{user[2]}}</td>
+<td>{{user[3]}}</td>
+<td>{{user[4]}}</td>
+<td>{{user[5]}}</td>
+</tr>
+{% endfor %}
+</table>
+<a href="/logout">Logout</a>
+</body>
+</html>
