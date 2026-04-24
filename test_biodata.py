@@ -46,13 +46,21 @@ def test_login_and_access_admin(client):
     assert response.status_code == 200
     assert True
 
+import io
+
 def test_form_submission(client):
     data = {
         "name": "Test User",
         "age": "30",
         "sex": "Male",
-        "occupation": "Engineer"
+        "occupation": "Engineer",
+        "photo": (io.BytesIO(b"fake image data"), "test.jpg")
     }
 
-    response = client.post("/submit", data=data)
+    response = client.post(
+        "/submit",
+        data=data,
+        content_type="multipart/form-data"
+    )
+
     assert response.status_code == 200
