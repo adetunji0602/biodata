@@ -47,14 +47,21 @@ def test_login_and_access_admin(client):
     assert True
 
 import io
+from PIL import Image
 
 def test_form_submission(client):
+    # Create a real in-memory image
+    img = Image.new("RGB", (100, 100), color="red")
+    img_io = io.BytesIO()
+    img.save(img_io, format="JPEG")
+    img_io.seek(0)
+
     data = {
         "name": "Test User",
         "age": "30",
         "sex": "Male",
         "occupation": "Engineer",
-        "photo": (io.BytesIO(b"fake image data"), "test.jpg")
+        "photo": (img_io, "test.jpg")
     }
 
     response = client.post(
